@@ -1,0 +1,892 @@
+<!doctype html>
+
+<html lang="ja">
+  <head>
+    <!-- vueの導入 -->
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+    <!-- <script SameSite='None' src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script> -->
+    <script  src="https://unpkg.com/vue@next"></script>
+    <!-- cssの導入 -->
+    <link rel="stylesheet" href="./css/culc.css">
+    <meta charset="utf-8">
+    <!-- タイトル(ブラウザ上のタブの表示)は各ページで決める -->
+    <title>ぷよぷよお邪魔計算ツール</title>
+  </head>
+
+  <body>
+    <header>
+
+    </header>
+    <!-- ここの中に各コンテンツの内容が入る -->
+    <body>
+        <div id="app">
+          <div class="title">
+            <div class="title-img">
+              <img src="ojama_img/iwa.png">
+            </div>
+            <div>
+              <h1>お邪魔計算ツール</h1>
+            </div>
+            <div class="title-img">
+              <img src="ojama_img/iwa.png">
+            </div>
+          </div>
+
+          <div class="result">
+            <h2>得点：{{ point }}　　お邪魔の個数：{{ ojama }}　　消した個数：{{ allNum }}</h2>
+          </div>
+
+          <div class="ojama-result" id="ojama_result">
+
+          </div>
+          
+          <div class="chain">
+            <div>
+              1連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="1" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="1" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="1" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="1" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="1" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              2連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="2" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="2" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="2" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="2" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="2" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              3連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="3" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="3" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="3" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="3" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="3" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              4連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="4" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="4" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="4" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="4" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="4" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              5連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="5" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="5" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="5" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="5" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="5" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              6連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="6" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="6" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="6" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="6" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="6" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              7連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="7" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="7" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="7" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="7" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="7" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              8連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="8" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="8" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="8" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="8" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="8" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              9連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="9" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="9" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="9" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="9" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="9" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              10連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="10" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="10" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="10" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="10" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="10" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              11連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="11" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="11" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="11" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="11" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="11" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              12連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="12" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="12" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="12" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="12" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="12" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              13連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="13" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="13" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="13" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="13" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="13" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              14連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="14" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="14" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="14" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="14" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="14" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              15連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="15" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="15" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="15" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="15" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="15" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              16連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="16" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="16" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="16" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="16" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="16" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              17連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="17" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="17" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="17" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="17" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="17" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              18連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="18" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="18" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="18" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="18" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="18" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="chain">
+            <div>
+              19連鎖目：
+            </div>
+            <div>
+              赤 <clear-block chain="19" color="red" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              青 <clear-block chain="19" color="blue" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              緑 <clear-block chain="19" color="green" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              黄 <clear-block chain="19" color="yellow" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+            <div>
+              紫 <clear-block chain="19" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
+            </div>
+          </div>
+
+          <div class="ojama-list">
+            <img src="ojama_img/ojama_list.png">
+          </div>
+
+          <div class="topic">
+            <h2>計算式と各ボーナス</h2>
+          </div>
+
+          <div class="info-culc">
+            <p>計算式：点数 = 消した個数 × 10 × (連鎖ボーナス + 色ボーナス + 各連結ボーナスの和)
+              <br>*ボーナスの和が0の時、つまり単発一色4個消しの時などはボーナス合計は1で計算
+            </p>
+          </div>
+
+          <div class="info-table">
+            <div>
+              <table>
+                <tr>
+                  <th>連鎖数</th><th>連鎖ボーナス</th>
+                </tr>
+                <tr>
+                  <td>1</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>2</td><td>8</td>
+                </tr>
+                <tr>
+                  <td>3</td><td>16</td>
+                </tr>
+                <tr>
+                  <td>4</td><td>32</td>
+                </tr>
+                <tr>
+                  <td>5</td><td>64</td>
+                </tr>
+                <tr>
+                  <td>6</td><td>96</td>
+                </tr>
+                <tr>
+                  <td>7</td><td>128</td>
+                </tr>
+                <tr>
+                  <td>8</td><td>160</td>
+                </tr>
+                <tr>
+                  <td>9</td><td>196</td>
+                </tr>
+                <tr>
+                  <td>10</td><td>224</td>
+                </tr>
+                <tr>
+                  <td>11</td><td>256</td>
+                </tr>
+                <tr>
+                  <td>12</td><td>288</td>
+                </tr>
+                <tr>
+                  <td>13</td><td>320</td>
+                </tr>
+                <tr>
+                  <td>14</td><td>352</td>
+                </tr>
+                <tr>
+                  <td>15</td><td>384</td>
+                </tr>
+                <tr>
+                  <td>16</td><td>416</td>
+                </tr>
+                <tr>
+                  <td>17</td><td>448</td>
+                </tr>
+                <tr>
+                  <td>18</td><td>480</td>
+                </tr>
+                <tr>
+                  <td>19</td><td>512</td>
+                </tr>
+              </table>
+            </div>
+
+            <div>
+              <table>
+                <tr>
+                  <th>色数</th><th>色ボーナス</th>
+                </tr>
+                <tr>
+                  <td>0</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>1</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>2</td><td>3</td>
+                </tr>
+                <tr>
+                  <td>3</td><td>6</td>
+                </tr>
+                <tr>
+                  <td>4</td><td>9</td>
+                </tr>
+                <tr>
+                  <td>5</td><td>12</td>
+                </tr>
+              </table>
+            </div>
+            
+            <div>
+              <table>
+                <tr>
+                  <th>連結数</th><th>連結ボーナス</th>
+                </tr>
+                <tr>
+                  <td>1</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>2</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>3</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>4</td><td>0</td>
+                </tr>
+                <tr>
+                  <td>5</td><td>2</td>
+                </tr>
+                <tr>
+                  <td>6</td><td>3</td>
+                </tr>
+                <tr>
+                  <td>7</td><td>4</td>
+                </tr>
+                <tr>
+                  <td>8</td><td>5</td>
+                </tr>
+                <tr>
+                  <td>9</td><td>6</td>
+                </tr>
+                <tr>
+                  <td>10</td><td>7</td>
+                </tr>
+                <tr>
+                  <td>11</td><td>10</td>
+                </tr>
+              </table>
+            </div>
+
+          </div>
+
+          <div class="topic">
+            <h2>TIPS</h2>
+          </div>
+
+          <div>
+            <h3>・連鎖と得点早見表（全て4個消し）</h3>
+          </div>
+
+          <div class="chain-sheet">
+            <table>
+              <tr>
+                <th>連鎖数</th><th>単連鎖得点</th><th>合計連鎖得点</th><th>おじゃま</th>
+              </tr>
+              <tr>
+                <td>1連鎖</td><td>40</td><td>40</td><td>0個</td>
+              </tr>
+              <tr>
+                <td>2連鎖</td><td>320</td><td>360</td><td>5個</td>
+              </tr>
+              <tr>
+                <td>3連鎖</td><td>640</td><td>1000</td><td>14個</td>
+              </tr>
+              <tr>
+                <td>4連鎖</td><td>1280</td><td>2280</td><td>32個</td>
+              </tr>
+              <tr>
+                <td>5連鎖</td><td>2560</td><td>4840</td><td>69個</td>
+              </tr>
+              <tr>
+                <td>6連鎖</td><td>3840</td><td>8680</td><td>124個</td>
+              </tr>
+              <tr>
+                <td>7連鎖</td><td>5120</td><td>13800</td><td>197個</td>
+              </tr>
+              <tr>
+                <td>8連鎖</td><td>6400</td><td>20200</td><td>288個</td>
+              </tr>
+              <tr>
+                <td>9連鎖</td><td>7680</td><td>27880</td><td>398個</td>
+              </tr>
+              <tr>
+                <td>10連鎖</td><td>8960</td><td>36840</td><td>526個</td>
+              </tr>
+              <tr>
+                <td>11連鎖</td><td>10240</td><td>47080</td><td>672個</td>
+              </tr>
+              <tr>
+                <td>12連鎖</td><td>11520</td><td>58600</td><td>837個</td>
+              </tr>
+              <tr>
+                <td>13連鎖</td><td>12800</td><td>71400</td><td>1020個</td>
+              </tr>
+              <tr>
+                <td>14連鎖</td><td>14080</td><td>85480</td><td>1221個</td>
+              </tr>
+              <tr>
+                <td>15連鎖</td><td>15360</td><td>100840</td><td>1440個</td>
+              </tr>
+              <tr>
+                <td>16連鎖</td><td>16640</td><td>117480</td><td>1678個</td>
+              </tr>
+              <tr>
+                <td>17連鎖</td><td>17920</td><td>13540</td><td>1934個</td>
+              </tr>
+              <tr>
+                <td>18連鎖</td><td>19200</td><td>154600</td><td>2208個</td>
+              </tr>
+              <tr>
+                <td>19連鎖</td><td>20480</td><td>175080</td><td>2501個</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- <div>
+            <h3>・名前のついた一連鎖</h3>
+          </div>
+
+          <div class="one-chain">
+            <div class="chain-exp">
+
+            </div>
+
+          </div> -->
+
+          <div class="play-link">
+            <a href="./play.html" class="btn">ぷよぷよお試しプレイ</a>
+            <p>*「ぷよぷよプログラミング」を参考にしたデモプレイが楽しめます</p>
+          </div>
+
+        </div>
+
+
+        <!-- 挿入するためのお邪魔画像、これ自体は非表示 -->
+        <div class="imgs">
+          <img src="ojama_img/shou.png" id="ojama_1">
+          <img src="ojama_img/shou.png" id="ojama_2">
+          <img src="ojama_img/shou.png" id="ojama_3">
+          <img src="ojama_img/shou.png" id="ojama_4">
+          <img src="ojama_img/shou.png" id="ojama_5">
+          <img src="ojama_img/shou.png" id="ojama_6">
+          <img src="ojama_img/shou.png" id="ojama_7">
+          <img src="ojama_img/shou.png" id="ojama_8">
+          <img src="ojama_img/shou.png" id="ojama_9">
+          <img src="ojama_img/shou.png" id="ojama_10">
+          <img src="ojama_img/shou.png" id="ojama_11">
+          <img src="ojama_img/shou.png" id="ojama_12">
+          <img src="ojama_img/shou.png" id="ojama_13">
+          <img src="ojama_img/shou.png" id="ojama_14">
+          <img src="ojama_img/shou.png" id="ojama_15">
+          <img src="ojama_img/shou.png" id="ojama_16">
+          <img src="ojama_img/shou.png" id="ojama_17">
+          <img src="ojama_img/shou.png" id="ojama_18">
+          <img src="ojama_img/shou.png" id="ojama_19">
+          <img src="ojama_img/shou.png" id="ojama_20">
+          <img src="ojama_img/shou.png" id="ojama_21">
+          <img src="ojama_img/shou.png" id="ojama_22">
+          <img src="ojama_img/shou.png" id="ojama_23">
+          <img src="ojama_img/shou.png" id="ojama_24">
+          <img src="ojama_img/shou.png" id="ojama_25">
+          <img src="ojama_img/shou.png" id="ojama_26">
+          <img src="ojama_img/shou.png" id="ojama_27">
+          <img src="ojama_img/shou.png" id="ojama_28">
+          <img src="ojama_img/shou.png" id="ojama_29">
+          <img src="ojama_img/shou.png" id="ojama_30">
+          <img src="ojama_img/shou.png" id="ojama_31">
+          <img src="ojama_img/shou.png" id="ojama_32">
+          <img src="ojama_img/shou.png" id="ojama_33">
+          <img src="ojama_img/shou.png" id="ojama_34">
+          <img src="ojama_img/shou.png" id="ojama_35">
+          <img src="ojama_img/shou.png" id="ojama_36">
+          <img src="ojama_img/shou.png" id="ojama_37">
+          <img src="ojama_img/shou.png" id="ojama_38">
+          <img src="ojama_img/shou.png" id="ojama_39">
+          <img src="ojama_img/shou.png" id="ojama_40">
+          <img src="ojama_img/shou.png" id="ojama_41">
+          <img src="ojama_img/shou.png" id="ojama_42">
+          <img src="ojama_img/shou.png" id="ojama_43">
+          <img src="ojama_img/shou.png" id="ojama_44">
+          <img src="ojama_img/shou.png" id="ojama_45">
+          <img src="ojama_img/shou.png" id="ojama_46">
+          <img src="ojama_img/shou.png" id="ojama_47">
+          <img src="ojama_img/shou.png" id="ojama_48">
+          <img src="ojama_img/shou.png" id="ojama_49">
+          <img src="ojama_img/shou.png" id="ojama_50">
+
+          <img src="ojama_img/dai.png" id="ojama_51">
+          <img src="ojama_img/dai.png" id="ojama_52">
+          <img src="ojama_img/dai.png" id="ojama_53">
+          <img src="ojama_img/dai.png" id="ojama_54">
+          <img src="ojama_img/dai.png" id="ojama_55">
+          <img src="ojama_img/dai.png" id="ojama_56">
+          <img src="ojama_img/dai.png" id="ojama_57">
+          <img src="ojama_img/dai.png" id="ojama_58">
+          <img src="ojama_img/dai.png" id="ojama_59">
+          <img src="ojama_img/dai.png" id="ojama_60">
+          <img src="ojama_img/dai.png" id="ojama_61">
+          <img src="ojama_img/dai.png" id="ojama_62">
+          <img src="ojama_img/dai.png" id="ojama_63">
+          <img src="ojama_img/dai.png" id="ojama_64">
+          <img src="ojama_img/dai.png" id="ojama_65">
+          <img src="ojama_img/dai.png" id="ojama_66">
+          <img src="ojama_img/dai.png" id="ojama_67">
+          <img src="ojama_img/dai.png" id="ojama_68">
+          <img src="ojama_img/dai.png" id="ojama_69">
+          <img src="ojama_img/dai.png" id="ojama_70">
+          <img src="ojama_img/dai.png" id="ojama_71">
+          <img src="ojama_img/dai.png" id="ojama_72">
+          <img src="ojama_img/dai.png" id="ojama_73">
+          <img src="ojama_img/dai.png" id="ojama_74">
+          <img src="ojama_img/dai.png" id="ojama_75">
+          <img src="ojama_img/dai.png" id="ojama_76">
+          <img src="ojama_img/dai.png" id="ojama_77">
+          <img src="ojama_img/dai.png" id="ojama_78">
+          <img src="ojama_img/dai.png" id="ojama_79">
+          <img src="ojama_img/dai.png" id="ojama_80">
+          <img src="ojama_img/dai.png" id="ojama_81">
+          <img src="ojama_img/dai.png" id="ojama_82">
+          <img src="ojama_img/dai.png" id="ojama_83">
+          <img src="ojama_img/dai.png" id="ojama_84">
+          <img src="ojama_img/dai.png" id="ojama_85">
+          <img src="ojama_img/dai.png" id="ojama_86">
+          <img src="ojama_img/dai.png" id="ojama_87">
+          <img src="ojama_img/dai.png" id="ojama_88">
+          <img src="ojama_img/dai.png" id="ojama_89">
+          <img src="ojama_img/dai.png" id="ojama_90">
+          <img src="ojama_img/dai.png" id="ojama_91">
+          <img src="ojama_img/dai.png" id="ojama_92">
+          <img src="ojama_img/dai.png" id="ojama_93">
+          <img src="ojama_img/dai.png" id="ojama_94">
+          <img src="ojama_img/dai.png" id="ojama_95">
+          <img src="ojama_img/dai.png" id="ojama_96">
+          <img src="ojama_img/dai.png" id="ojama_97">
+          <img src="ojama_img/dai.png" id="ojama_98">
+          <img src="ojama_img/dai.png" id="ojama_99">
+          <img src="ojama_img/dai.png" id="ojama_100">
+
+          <img src="ojama_img/iwa.png" id="ojama_101">
+          <img src="ojama_img/iwa.png" id="ojama_102">
+          <img src="ojama_img/iwa.png" id="ojama_103">
+          <img src="ojama_img/iwa.png" id="ojama_104">
+          <img src="ojama_img/iwa.png" id="ojama_105">
+          <img src="ojama_img/iwa.png" id="ojama_106">
+          <img src="ojama_img/iwa.png" id="ojama_107">
+          <img src="ojama_img/iwa.png" id="ojama_108">
+          <img src="ojama_img/iwa.png" id="ojama_109">
+          <img src="ojama_img/iwa.png" id="ojama_110">
+          <img src="ojama_img/iwa.png" id="ojama_111">
+          <img src="ojama_img/iwa.png" id="ojama_112">
+          <img src="ojama_img/iwa.png" id="ojama_113">
+          <img src="ojama_img/iwa.png" id="ojama_114">
+          <img src="ojama_img/iwa.png" id="ojama_115">
+          <img src="ojama_img/iwa.png" id="ojama_116">
+          <img src="ojama_img/iwa.png" id="ojama_117">
+          <img src="ojama_img/iwa.png" id="ojama_118">
+          <img src="ojama_img/iwa.png" id="ojama_119">
+          <img src="ojama_img/iwa.png" id="ojama_120">
+          <img src="ojama_img/iwa.png" id="ojama_121">
+          <img src="ojama_img/iwa.png" id="ojama_122">
+          <img src="ojama_img/iwa.png" id="ojama_123">
+          <img src="ojama_img/iwa.png" id="ojama_124">
+          <img src="ojama_img/iwa.png" id="ojama_125">
+          <img src="ojama_img/iwa.png" id="ojama_126">
+          <img src="ojama_img/iwa.png" id="ojama_127">
+          <img src="ojama_img/iwa.png" id="ojama_128">
+          <img src="ojama_img/iwa.png" id="ojama_129">
+          <img src="ojama_img/iwa.png" id="ojama_130">
+
+          <img src="ojama_img/hoshi.png" id="ojama_131">
+          <img src="ojama_img/hoshi.png" id="ojama_132">
+          <img src="ojama_img/hoshi.png" id="ojama_133">
+          <img src="ojama_img/hoshi.png" id="ojama_134">
+          <img src="ojama_img/hoshi.png" id="ojama_135">
+          <img src="ojama_img/hoshi.png" id="ojama_136">
+          <img src="ojama_img/hoshi.png" id="ojama_137">
+          <img src="ojama_img/hoshi.png" id="ojama_138">
+          <img src="ojama_img/hoshi.png" id="ojama_139">
+          <img src="ojama_img/hoshi.png" id="ojama_140">
+          <img src="ojama_img/hoshi.png" id="ojama_141">
+          <img src="ojama_img/hoshi.png" id="ojama_142">
+          <img src="ojama_img/hoshi.png" id="ojama_143">
+          <img src="ojama_img/hoshi.png" id="ojama_144">
+          <img src="ojama_img/hoshi.png" id="ojama_145">
+          <img src="ojama_img/hoshi.png" id="ojama_146">
+          <img src="ojama_img/hoshi.png" id="ojama_147">
+          <img src="ojama_img/hoshi.png" id="ojama_148">
+          <img src="ojama_img/hoshi.png" id="ojama_149">
+          <img src="ojama_img/hoshi.png" id="ojama_150">
+          <img src="ojama_img/hoshi.png" id="ojama_151">
+          <img src="ojama_img/hoshi.png" id="ojama_152">
+          <img src="ojama_img/hoshi.png" id="ojama_153">
+          <img src="ojama_img/hoshi.png" id="ojama_154">
+          <img src="ojama_img/hoshi.png" id="ojama_155">
+          <img src="ojama_img/hoshi.png" id="ojama_156">
+          <img src="ojama_img/hoshi.png" id="ojama_157">
+          <img src="ojama_img/hoshi.png" id="ojama_158">
+          <img src="ojama_img/hoshi.png" id="ojama_159">
+          <img src="ojama_img/hoshi.png" id="ojama_160">
+
+          <img src="ojama_img/tsuki.png" id="ojama_161">
+          <img src="ojama_img/tsuki.png" id="ojama_162">
+          <img src="ojama_img/tsuki.png" id="ojama_163">
+          <img src="ojama_img/tsuki.png" id="ojama_164">
+          <img src="ojama_img/tsuki.png" id="ojama_165">
+          <img src="ojama_img/tsuki.png" id="ojama_166">
+          <img src="ojama_img/tsuki.png" id="ojama_167">
+          <img src="ojama_img/tsuki.png" id="ojama_168">
+          <img src="ojama_img/tsuki.png" id="ojama_169">
+          <img src="ojama_img/tsuki.png" id="ojama_170">
+
+          <img src="ojama_img/oukan.png" id="ojama_171">
+          <img src="ojama_img/oukan.png" id="ojama_172">
+          <img src="ojama_img/oukan.png" id="ojama_173">
+          <img src="ojama_img/oukan.png" id="ojama_174">
+          <img src="ojama_img/oukan.png" id="ojama_175">
+          <img src="ojama_img/oukan.png" id="ojama_176">
+          <img src="ojama_img/oukan.png" id="ojama_177">
+          <img src="ojama_img/oukan.png" id="ojama_178">
+          <img src="ojama_img/oukan.png" id="ojama_179">
+          <img src="ojama_img/oukan.png" id="ojama_180">
+
+          <img src="ojama_img/suisei.png" id="ojama_181">
+          <img src="ojama_img/suisei.png" id="ojama_182">
+          <img src="ojama_img/suisei.png" id="ojama_183">
+          <img src="ojama_img/suisei.png" id="ojama_184">
+          <img src="ojama_img/suisei.png" id="ojama_185">
+          <img src="ojama_img/suisei.png" id="ojama_186">
+          <img src="ojama_img/suisei.png" id="ojama_187">
+          <img src="ojama_img/suisei.png" id="ojama_188">
+          <img src="ojama_img/suisei.png" id="ojama_189">
+          <img src="ojama_img/suisei.png" id="ojama_190">
+
+        </div>
+    </body>
+    <!-- jsファイルの読み込み -->
+    <script src="./src/ojama.js"></script>
+
+    <footer>
+    </footer>
+
+  </body>
+  
+</html>
