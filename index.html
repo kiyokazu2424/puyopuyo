@@ -33,11 +33,19 @@
           </div>
 
           <div class="result">
-            <h2>得点：{{ point }}　　お邪魔の個数：{{ ojama }}　　消した個数：{{ allNum }}</h2>
+            <h2>得点：{{ point }}　　お邪魔の個数：{{ ojama }}　　消した個数：{{ entireNum }}</h2>
           </div>
 
           <div class="ojama-result" id="ojama_result">
+          </div>
 
+          <div class="fallbonus">
+            <div>
+              落下ボーナス（初めから下押しで最下段まで落とすと13点）：
+            </div>
+            <div>
+              <fall-bonus v-on:fall-bonus="fallbonus"></fall-bonus>
+            </div>
           </div>
           
           <div class="chain">
@@ -61,6 +69,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_1">
+          </div>
+
           <div class="chain">
             <div>
               2連鎖目：
@@ -80,6 +91,9 @@
             <div>
               紫 <clear-block chain="2" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_2">
           </div>
 
           <div class="chain">
@@ -103,6 +117,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_3">
+          </div>
+
           <div class="chain">
             <div>
               4連鎖目：
@@ -122,6 +139,9 @@
             <div>
               紫 <clear-block chain="4" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_4">
           </div>
 
           <div class="chain">
@@ -145,6 +165,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_5">
+          </div>
+
           <div class="chain">
             <div>
               6連鎖目：
@@ -164,6 +187,9 @@
             <div>
               紫 <clear-block chain="6" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_6">
           </div>
 
           <div class="chain">
@@ -187,6 +213,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_7">
+          </div>
+
           <div class="chain">
             <div>
               8連鎖目：
@@ -206,6 +235,9 @@
             <div>
               紫 <clear-block chain="8" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_8">
           </div>
 
           <div class="chain">
@@ -229,6 +261,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_9">
+          </div>
+
           <div class="chain">
             <div>
               10連鎖目：
@@ -248,6 +283,9 @@
             <div>
               紫 <clear-block chain="10" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_10">
           </div>
 
           <div class="chain">
@@ -271,6 +309,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_11">
+          </div>
+
           <div class="chain">
             <div>
               12連鎖目：
@@ -290,6 +331,9 @@
             <div>
               紫 <clear-block chain="12" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_12">
           </div>
 
           <div class="chain">
@@ -313,6 +357,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_13">
+          </div>
+
           <div class="chain">
             <div>
               14連鎖目：
@@ -332,6 +379,9 @@
             <div>
               紫 <clear-block chain="14" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_14">
           </div>
 
           <div class="chain">
@@ -355,6 +405,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_15">
+          </div>
+
           <div class="chain">
             <div>
               16連鎖目：
@@ -374,6 +427,9 @@
             <div>
               紫 <clear-block chain="16" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_16">
           </div>
 
           <div class="chain">
@@ -397,6 +453,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_17">
+          </div>
+
           <div class="chain">
             <div>
               18連鎖目：
@@ -418,6 +477,9 @@
             </div>
           </div>
 
+          <div class="formula" id="formula_18">
+          </div>
+
           <div class="chain">
             <div>
               19連鎖目：
@@ -437,6 +499,9 @@
             <div>
               紫 <clear-block chain="19" color="purple" v-on:plus-minus="onplus"></clear-block> 個　
             </div>
+          </div>
+
+          <div class="formula" id="formula_19">
           </div>
 
           <div class="ojama-list">
@@ -525,9 +590,6 @@
                   <th>色数</th><th>色ボーナス</th>
                 </tr>
                 <tr>
-                  <td>0</td><td>0</td>
-                </tr>
-                <tr>
                   <td>1</td><td>0</td>
                 </tr>
                 <tr>
@@ -581,7 +643,7 @@
                   <td>10</td><td>7</td>
                 </tr>
                 <tr>
-                  <td>11</td><td>10</td>
+                  <td>11以上</td><td>10</td>
                 </tr>
               </table>
             </div>
@@ -675,6 +737,8 @@
           <div class="play-link">
             <a href="./play.html" class="btn">ぷよぷよお試しプレイ</a>
             <p>*「ぷよぷよプログラミング」を参考にしたデモプレイが楽しめます</p>
+            <p>*このツールは配信などで使用していただいて構いません、役立ててもらえると幸いです</p>
+            <p>*個数の入力欄に小数、負の数を入れると計算不能です</p>
           </div>
 
         </div>
